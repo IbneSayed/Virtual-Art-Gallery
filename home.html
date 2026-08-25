@@ -1,0 +1,277 @@
+<!-- এটি একটি HTML5 ডকুমেন্ট, তা ব্রাউজারকে বোঝানোর জন্য -->
+<!DOCTYPE html>
+<!-- lang="en" নির্দেশ করে যে এই ওয়েবসাইটের মূল ভাষা ইংরেজি -->
+<html lang="en">
+<head>
+    <!-- পৃথিবীর প্রায় সব ভাষার অক্ষর সাপোর্ট করার জন্য UTF-8 এনকোডিং -->
+    <meta charset="UTF-8">
+    <!-- মোবাইল বা ছোট স্ক্রিনে ওয়েবসাইটটি রেসপন্সিভ রাখার জন্য মেটা ট্যাগ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ব্রাউজারের ট্যাবে ওয়েবসাইটের যে নাম দেখাবে -->
+    <title>Selected Works</title>
+    
+    <!-- ওয়েবসাইটের ডিজাইন করার জন্য কাস্টম সিএসএস (CSS) -->
+    <style>
+        /* CSS Reset & Base Styles: 
+           ব্রাউজারের ডিফল্ট স্টাইল মুছে ফেলার জন্য সবার আগে এই কোড দেওয়া হয় */
+        * {
+            /* প্যাডিং এবং বর্ডার যেন বক্সের সাইজ বাড়িয়ে না দেয়, তা নিশ্চিত করা */
+            box-sizing: border-box;
+            /* সবকিছুর ডিফল্ট মার্জিন ও প্যাডিং শূন্য করে দেওয়া */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* পুরো ওয়েবসাইটের বডির ডিজাইন */
+        body { 
+            /* টাইপরাইটার বা কোডিং ফন্ট ব্যবহার করা হয়েছে */
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace; 
+            /* কাগজের মতো হালকা অফ-হোয়াইট ব্যাকগ্রাউন্ড */
+            background-color: #f4f4f0;
+            /* লেখার রঙ কালো */
+            color: #000;
+            /* ম্যাক (Mac) এবং সাফারি ব্রাউজারে লেখাগুলো যেন মসৃণ (smooth) দেখায় তার কোড */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* চারদিকে ১ রেম (rem) প্যাডিং */
+            padding: 1rem;
+        }
+
+        /* মিডিয়া কোয়েরি: স্ক্রিন যখন ৬৪০ পিক্সেল বা তার বড় হবে, 
+           তখন বডির প্যাডিং বেড়ে ২ রেম (rem) হয়ে যাবে */
+        @media (min-width: 640px) {
+            body { padding: 2rem; }
+        }
+
+        /* Layout (লেআউট) ডিজাইন */
+        .container {
+            /* ওয়েবসাইটের কন্টেন্ট সর্বোচ্চ ৭৬৮ পিক্সেল (৪৮ রেম) চওড়া হবে */
+            max-width: 48rem; 
+            /* ডানে ও বামে অটো মার্জিন দিয়ে কন্টেন্টকে মাঝখানে আনা হয়েছে */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Header (হেডার) বা ওয়েবসাইটের শীর্ষ অংশের ডিজাইন */
+        .header {
+            /* নিচে আড়াই রেম ফাঁকা জায়গা (মার্জিন) */
+            margin-bottom: 2.5rem;
+            /* নিচে ২ পিক্সেলের কালো বর্ডার বা দাগ */
+            border-bottom: 2px solid #000;
+            /* বর্ডারের উপরে ১ রেম প্যাডিং */
+            padding-bottom: 1rem;
+            /* ভেতরের আইটেমগুলোকে পাশাপাশি বসানোর জন্য Flexbox */
+            display: flex;
+            /* আইটেমগুলোকে দুই প্রান্তে (ডানে-বামে) ছড়িয়ে দেওয়া */
+            justify-content: space-between;
+            /* আইটেমগুলোকে নিচের লাইনে সমানভাবে মেলানো */
+            align-items: flex-end;
+        }
+
+        /* হেডারের মূল শিরোনাম (h1) */
+        .header h1 {
+            font-size: 1.5rem; /* ফন্টের সাইজ */
+            font-weight: bold; /* লেখা মোটা হবে */
+            text-transform: uppercase; /* সব অক্ষর বড় হাতের হবে */
+            letter-spacing: -0.025em; /* অক্ষরগুলোর মাঝের দূরত্ব একটু কমানো হয়েছে */
+        }
+
+        /* হেডারের সাবটাইটেল (Gallery লেখাটি) */
+        .header .subtitle {
+            font-size: 0.875rem; /* ফন্টের সাইজ একটু ছোট */
+            margin-top: 0.25rem; /* উপরে একটু মার্জিন */
+            color: #374151; /* গাঢ় ধূসর রঙ */
+        }
+
+        /* হেডারের ডানদিকের লিংকগুলো */
+        .header-links {
+            font-size: 0.875rem; 
+            text-align: right; /* লেখা ডানদিকে সরানো */
+            line-height: 1.625; /* লাইনের মাঝের উচ্চতা বা ফাঁকা জায়গা */
+        }
+
+        /* লিংকের সাধারণ ডিজাইন */
+        .header-links a {
+            color: #000; /* লিংক কালো রঙের হবে */
+            text-decoration: none; /* লিংকের নিচে কোনো দাগ থাকবে না */
+        }
+
+        /* মাউস নিলে (hover) লিংকের ডিজাইন কেমন হবে */
+        .header-links a:hover {
+            text-decoration: underline; /* মাউস নিলে নিচে দাগ আসবে */
+        }
+
+        /* Art Feed বা আর্টওয়ার্কগুলো ধারণকারী মূল কন্টেইনার */
+        .art-feed {
+            display: flex; 
+            flex-direction: column; /* আইটেমগুলো একটার নিচে আরেকটা বসবে */
+            gap: 2rem; /* প্রতিটি আর্টওয়ার্কের মাঝে ২ রেম ফাঁকা জায়গা থাকবে */
+        }
+
+        /* প্রতিটি আর্টওয়ার্ক কার্ডের ডিজাইন (ব্রুটালিস্ট স্টাইল) */
+        .art-card {
+            border: 2px solid #000; /* চারদিকে ২ পিক্সেল কালো বর্ডার */
+            background-color: #fff; /* সাদা ব্যাকগ্রাউন্ড */
+            padding: 1rem; /* ভেতরে প্যাডিং */
+            /* নিচে ডানদিকে একটি সলিড কালো শ্যাডো (ছায়া) দেওয়া হয়েছে */
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+
+        /* স্ক্রিন বড় হলে (৬৪০ পিক্সেলের বেশি) কার্ডের ভেতরের প্যাডিং বেড়ে যাবে */
+        @media (min-width: 640px) {
+            .art-card { padding: 1.5rem; }
+        }
+
+        /* কার্ডের ওপরের মেটাডেটা (শিরোনাম, সাল ইত্যাদি) অংশ */
+        .art-meta {
+            display: flex;
+            justify-content: space-between; /* দুই পাশে ছড়ানো */
+            align-items: flex-start; /* উপরের লাইনে মেলানো */
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #d1d5db; /* নিচে হালকা ধূসর বর্ডার */
+            padding-bottom: 0.75rem;
+        }
+
+        /* আর্টওয়ার্কের শিরোনাম */
+        .art-title {
+            font-weight: bold;
+            font-size: 1.125rem;
+        }
+
+        /* ক্যাটাগরি বা ট্যাগ (যেমন: Solo Portrait) */
+        .art-tag {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: #000; /* কালো ব্যাকগ্রাউন্ড */
+            color: #fff; /* সাদা লেখা */
+            padding: 0.25rem 0.5rem; /* ডানে-বামে ও উপরে-নিচে প্যাডিং */
+            margin-top: 0.5rem; /* শিরোনাম থেকে একটু নিচে নামানো */
+            display: inline-block; /* যেন শুধু লেখার সাইজ অনুযায়ী ব্যাকগ্রাউন্ড নেয় */
+        }
+
+        /* আর্টওয়ার্কের সাল ও সাইজের বিস্তারিত অংশ */
+        .art-details {
+            text-align: right;
+            font-size: 0.875rem;
+        }
+
+        /* সাল (Year) */
+        .art-year {
+            font-weight: bold;
+        }
+
+        /* সাইজ (Size) */
+        .art-size {
+            color: #6b7280; /* হালকা ধূসর রঙ */
+        }
+
+        /* ছবি রাখার জায়গা (Image Placeholder) */
+        .art-image-wrapper {
+            width: 100%; /* পুরো জায়গা জুড়ে থাকবে */
+            height: 20rem; /* উচ্চতা নির্দিষ্ট করে দেওয়া */
+            background-color: #e5e7eb; /* হালকা ধূসর ব্যাকগ্রাউন্ড */
+            border: 1px dashed #9ca3af; /* ড্যাশ দেওয়া বর্ডার */
+            display: flex;
+            align-items: center; /* ভেতরের লেখাকে লম্বালম্বি মাঝখানে আনা */
+            justify-content: center; /* ভেতরের লেখাকে আড়াআড়ি মাঝখানে আনা */
+            margin-bottom: 1rem;
+        }
+
+        /* ছবি রাখার জায়গার ভেতরের লেখার ডিজাইন */
+        .art-image-wrapper span {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* ছবির নিচের বর্ণনার ডিজাইন */
+        .art-description {
+            font-size: 0.875rem;
+            color: #374151;
+            border-left: 2px solid #000; /* শুধু বাম দিকে একটি কালো দাগ */
+            padding-left: 0.75rem; /* দাগ থেকে লেখা একটু দূরে সরানোর জন্য প্যাডিং */
+            line-height: 1.25rem;
+        }
+        /* Image Styles */
+        .art-image-wrapper img 
+        {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+    /* এটি ইমেজকে স্ট্রেচ বা চ্যাপ্টা হতে দেবে না */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- মূল কন্টেইনার, যা সবকিছুকে স্ক্রিনের মাঝখানে রাখবে -->
+    <div class="container">
+        
+        <!-- হেডার অংশ -->
+        <header class="header">
+            <div>
+                <h1>Ibne Sayed</h1>
+                <p class="subtitle">Virtual Art Gellary</p>
+            </div>
+            <!-- ডানদিকের মেনু লিংক -->
+            <div class="header-links">
+                <a href="#">Artist</a><br>
+                <a href="#">Order</a>
+            </div>
+        </header>
+
+        <!-- মূল কন্টেন্ট (আর্টওয়ার্কগুলো) -->
+        <main class="art-feed">
+            
+            <!-- প্রথম আর্টওয়ার্ক কার্ড -->
+            <article class="art-card">
+                <!-- উপরের শিরোনাম ও সাল -->
+                <div class="art-meta">
+                    <div>
+                        <h2 class="art-title">"Face Portrait"</h2>
+                        <span class="art-tag">Solo</span>
+                    </div>
+                    <div class="art-details">
+                        <p class="art-year">2026</p>
+                        <p class="art-size">18 x 24 in</p>
+                    </div>
+                </div>
+                
+                <!-- ছবির জায়গা -->
+                <div class="art-image-wrapper">
+    <img src="assets/tonoy.jpg" alt="tonoy.jpg">
+                </div>
+                
+                <!-- ছবির বর্ণনা -->
+                <p class="art-description">
+                    Exploration of negative space and brutalist architectural forms. Created during the winter residency.
+                </p>
+            </article>
+
+            <!-- দ্বিতীয় আর্টওয়ার্ক কার্ড -->
+            <article class="art-card">
+                <div class="art-meta">
+                    <div>
+                        <h2 class="art-title">"Urban Decay"</h2>
+                        <span class="art-tag">Group Portrait</span>
+                    </div>
+                    <div class="art-details">
+                        <p class="art-year">2026</p>
+                        <p class="art-size">36 x 36 in</p>
+                    </div>
+                </div>
+                
+                <div class="art-image-wrapper">
+                    <span>[ Image Source: /assets/art-02.jpg ]</span>
+                </div>
+                
+                <p class="art-description">
+                    A study of oxidized metals, concrete textures, and urban isolation.
+                </p>
+            </article>
+
+        </main>
+    </div>
+
+</body>
+</html>
